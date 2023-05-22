@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  mariadb:
+    container_name: mariaDB
+    image: mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=alquilerVehiculos
+      - MYSQL_USER=vehiculos
+      - MYSQL_PASSWORD=vehiculos
+    volumes:
+      - volumen-mariadb:/var/lib/mysql
+      - .:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+volumes:
+  volumen-mariadb:

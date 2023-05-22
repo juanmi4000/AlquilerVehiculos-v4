@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  mongodb:
+    container_name: mongoDB
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_DATABASE=alquilerVehiculos
+      - MONGO_INITDB_ROOT_USERNAME=vehiculos
+      - MONGO_INITDB_ROOT_PASSWORD=vehiculos
+    volumes:
+      - volumen-mongodb:/data/db
+    ports:
+      - 27017:27017
+volumes:
+  volumen-mongodb:
