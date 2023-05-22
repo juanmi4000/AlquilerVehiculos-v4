@@ -1,0 +1,111 @@
+.menuPrincipal{
+    -fx-background-color: rgb(61, 239, 255);
+    -fx-font-family: 'Courier New', Courier, monospace;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+/* Estilos para los botones */
+.botones {
+    /* Color de fondo */
+    -fx-background-color: rgb(80, 162, 249);
+    /* Color del texto */ 
+    -fx-text-fill: white; 
+    /* Tamaño de la fuente */
+    -fx-font-size: 13px; 
+    /*-fx-padding: 6px 12px;  Espaciado interno */
+    /* Radio de borde */
+    -fx-border-radius: 7px; 
+    /* Efecto de sombra: dropshadow(<color>, <offsetX>, <offsetY>, <blurRadius>, <spread>) */
+   /*  -fx-effect: dropshadow(rgba(0, 0, 0, 0.2), 3, 3, 0, 0); */
+    /* Lo desplaza en el eje x */
+    /* -fx-translate-x: 1.0; */
+    /* Lo desplaza en el eje y */
+    /* -fx-translate-y: 1.0; */
+}
+
+.fondo{
+    -fx-background-color: #d1e8ff;
+}
+
+.tabla {
+    -fx-base: #4f4e4e;
+    -fx-control-inner-background: #1d1d1d;
+    -fx-background-color: #1d1d1d;
+    -fx-table-cell-border-color: white;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.botones:hover {
+    /* Color de fondo al pasar el cursor */
+    -fx-background-color: #4c77b3; 
+    /* Color del texto */
+    -fx-text-fill: rgb(5, 5, 5); 
+}
+
+ .botones:pressed {
+    /* Color de fondo al presionar el botón */
+    -fx-background-color: #67a2dd; 
+    /* Efecto de relieve */
+    /* -fx-effect: dropshadow(rgba(0, 0, 0, 0.4), 0, 0, 0, 2); */
+}
+
+.menuAbajo {
+    -fx-background-color: rgb(136, 223, 255);
+}
+
+.principal {
+    -fx-font-weight: 100;
+}
+
+.etiquetaVentana {
+    -fx-font-family: Consolas;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.etiqueta {
+    -fx-font-family: Consolas;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+.separador {
+    -fx-background-color: rgb(63, 63, 63);
+}
+
+.cajaTexto{
+    -fx-font-weight: bold;
+}
+
+#btAceptar{
+    -fx-background-color: rgb(80, 162, 249);
+    -fx-text-fill: white;
+    -fx-font-size: 13px; 
+    -fx-border-radius: 7px;
+}
+
+#btCancelar{
+    -fx-background-color: rgb(80, 162, 249);
+    -fx-text-fill: white;
+    -fx-font-size: 13px; 
+    -fx-border-radius: 7px; 
+}
+
+#btCancelar:hover{
+    -fx-background-color: rgb(216, 39, 11);
+}
+
+#btAceptar:hover{
+    -fx-background-color: rgb(30, 175, 30);
+}
+
+#btAceptar:pressed {
+    -fx-background-color: rgb(0, 168, 0);
+}
+
+#btCancelar:pressed{
+    -fx-background-color: rgb(195, 26, 0);
+}
+

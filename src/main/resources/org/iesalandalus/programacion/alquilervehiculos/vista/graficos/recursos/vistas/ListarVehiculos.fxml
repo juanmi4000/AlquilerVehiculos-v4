@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="1322.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.alquilervehiculos.vista.graficos.controladores.ListarVehiculos">
+   <children>
+      <MenuBar styleClass="menuPrincipal">
+         <menus>
+            <Menu mnemonicParsing="false" text="Fichero">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#salir" text="Salir" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Opciones">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#listarClientes" text="Listar clientes" />
+                  <MenuItem mnemonicParsing="false" onAction="#listarAlquileres" text="Listar alquileres" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Estadísticas">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#estadisticasMensuales" text="Mensuales" />
+                  <MenuItem mnemonicParsing="false" onAction="#estadisticasAnuales" text="Anuales" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#acercaDe" text="Acerca de" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <HBox prefHeight="761.0" prefWidth="1266.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="590.0" prefWidth="310.0" spacing="20.0" styleClass="fondo">
+               <children>
+                  <Label styleClass="etiquetaVentana" text="BUSCAR/BORRAR VEHICULO" />
+                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                     <children>
+                        <Label styleClass="etiqueta" text="Matrícula:" />
+                        <TextField fx:id="tfMatricula" maxWidth="118.0" onAction="#matriculaBusBor" prefHeight="26.0" prefWidth="109.0" styleClass="cajaTexto" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <Button fx:id="btBuscar" mnemonicParsing="false" onAction="#buscarVehiculo" styleClass="botones" text="Buscar" />
+                        <Button fx:id="btBorrar" mnemonicParsing="false" onAction="#borrarVehiculo" styleClass="botones" text="Borrar" />
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" styleClass="separador" />
+                  <Label styleClass="etiquetaVentana" text="VEHICULO BUSCADO" />
+                  <GridPane hgap="5.0" vgap="5.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="84.33333587646484" minWidth="10.0" prefWidth="58.33341064453125" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.66668701171875" minWidth="10.0" prefWidth="130.06658935546875" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="23.333343505859375" minHeight="10.0" prefHeight="14.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label styleClass="etiqueta" text="Tipo:" />
+                        <Label styleClass="etiqueta" text="Marca:" GridPane.rowIndex="1" />
+                        <Label styleClass="etiqueta" text="Modelo:" GridPane.rowIndex="2" />
+                        <Label styleClass="etiqueta" text="Matrícula:" GridPane.rowIndex="3" />
+                        <Label styleClass="etiqueta" text="Cilindrada:" GridPane.rowIndex="5" />
+                        <Label styleClass="etiqueta" text="P.M.A:" GridPane.rowIndex="6" />
+                        <Label styleClass="etiqueta" text="Plazas:" GridPane.rowIndex="7" />
+                        <TextField fx:id="tfTipoEncontrado" prefHeight="25.0" prefWidth="143.0" styleClass="cajaTexto" GridPane.columnIndex="1" />
+                        <TextField fx:id="tfMarcaEncontrada" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="tfMatriculaEncontrada" maxWidth="100.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="tfCilindradaEncontrada" maxWidth="70.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="tfPmaEncontrada" maxWidth="70.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="tfPlazasEncontradas" maxWidth="70.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="tfModeloEncontrado" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Separator maxWidth="50.0" prefHeight="0.0" prefWidth="58.0" styleClass="separador" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <Separator prefWidth="200.0" styleClass="separador" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="762.0" prefWidth="830.0">
+               <children>
+                  <TableView fx:id="tvListaVehiculos" prefHeight="762.0" prefWidth="698.0" styleClass="tabla">
+                     <columns>
+                        <TableColumn fx:id="tcTipo" prefWidth="94.40005493164062" text="Tipo" />
+                        <TableColumn fx:id="tcMarca" prefWidth="147.46670532226562" text="Marca" />
+                        <TableColumn fx:id="tcModelo" prefWidth="154.93328857421875" text="Modelo" />
+                        <TableColumn fx:id="tcMatricula" prefWidth="116.2667236328125" text="Matrícula" />
+                        <TableColumn fx:id="tcCilindrada" prefWidth="81.33331298828125" text="Cilindrada" />
+                        <TableColumn fx:id="tcPma" prefWidth="92.5333251953125" text="P.M.A" />
+                        <TableColumn fx:id="tcPlazas" prefWidth="116.0000122070312" text="Plazas" />
+                     </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#borrarVehiculoTabla" text="Borrar vehiculo" />
+                           </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TableView>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="590.0" prefWidth="287.0" spacing="10.0" styleClass="fondo">
+               <children>
+                  <Label styleClass="etiquetaVentana" text="VEHICULO MARCADO" />
+                  <Separator prefWidth="200.0" styleClass="separador" />
+                  <GridPane hgap="5.0" vgap="5.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="84.33333587646484" minWidth="10.0" prefWidth="80.5333984375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.66668701171875" minWidth="10.0" prefWidth="128.2666015625" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="23.333343505859375" minHeight="10.0" prefHeight="14.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label styleClass="etiqueta" text="Tipo:" />
+                        <Label styleClass="etiqueta" text="Marca:" GridPane.rowIndex="1" />
+                        <Label styleClass="etiqueta" text="Modelo:" GridPane.rowIndex="2" />
+                        <Label styleClass="etiqueta" text="Matrícula:" GridPane.rowIndex="3" />
+                        <Label styleClass="etiqueta" text="Cilindrada:" GridPane.rowIndex="5" />
+                        <Label styleClass="etiqueta" text="P.M.A:" GridPane.rowIndex="6" />
+                        <Label styleClass="etiqueta" text="Plazas:" GridPane.rowIndex="7" />
+                        <TextField fx:id="tfCambiarTipo" prefHeight="25.0" prefWidth="143.0" styleClass="cajaTexto" GridPane.columnIndex="1" />
+                        <TextField fx:id="tfCambiarMarca" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="tfCambiarMatricula" maxWidth="100.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="tfCambiarCilindrada" maxWidth="70.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="tfCambiarPma" maxWidth="70.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="tfCambiarPlazas" maxWidth="70.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="tfCambiarModelo" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Separator maxWidth="50.0" prefHeight="0.0" prefWidth="58.0" styleClass="separador" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <Separator prefWidth="200.0" styleClass="separador" />
+                  <Button mnemonicParsing="false" onAction="#insertarVehiculo" styleClass="botones" text="Insertar vehículo" />
+                  <Separator prefWidth="200.0" styleClass="separador" />
+                  <HBox alignment="CENTER_LEFT" spacing="25.0">
+                     <children>
+                        <Label styleClass="etiqueta" text="Matrícula:" />
+                        <TextField fx:id="tfListarAlquileresV" maxWidth="100.0" onAction="#comprobarAlquileresVehiculoCo" styleClass="cajaTexto" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <Button fx:id="btListVehi" mnemonicParsing="false" onAction="#listarAlquileresVehiculo" styleClass="botones" text="Listar alquileres vehículo" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="922.0" styleClass="menuAbajo">
+         <children>
+            <Button mnemonicParsing="false" onAction="#gitHub" prefHeight="25.0" prefWidth="31.0" styleClass="botones">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/GitHub.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

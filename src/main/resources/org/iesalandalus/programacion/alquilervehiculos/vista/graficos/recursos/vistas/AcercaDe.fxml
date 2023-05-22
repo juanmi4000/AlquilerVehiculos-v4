@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="448.0" spacing="30.0" styleClass="fondo" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.alquilervehiculos.vista.graficos.controladores.AcercaDe">
+   <children>
+      <ImageView fitHeight="184.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/imgAcercaDe.png" />
+         </image></ImageView>
+      <Label styleClass="etiquetaVentana" text="SI ESTAS INTERESAD@:" />
+      <Hyperlink onAction="#abrirLink" text="https://github.com/juanmi4000/AlquilerVehiculos-v3.git" />
+      <Label styleClass="etiquetaVentana" text="Hecho por: Juan Manuel Garcia Moyano" />
+      <Hyperlink onAction="#abrirPdf" text="BIBLIOGRAFÍA" />
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

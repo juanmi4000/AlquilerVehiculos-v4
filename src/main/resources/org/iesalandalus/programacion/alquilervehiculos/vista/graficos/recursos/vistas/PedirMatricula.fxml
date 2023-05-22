@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="161.0" prefWidth="331.0" spacing="20.0" styleClass="fondo" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.alquilervehiculos.vista.graficos.controladores.PedirMatricula">
+   <children>
+      <Label styleClass="etiquetaVentana" text="BORRAR VEHICULO" />
+      <GridPane prefHeight="30.0" prefWidth="262.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="292.800048828125" minWidth="10.0" prefWidth="86.8000244140625" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.79998779296875" minWidth="10.0" prefWidth="204.39997558593754" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="86.0" styleClass="etiqueta" text="Matrícula:">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="tfMatricula" maxWidth="150.0" prefHeight="26.0" prefWidth="243.0" styleClass="cajaTexto" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" prefHeight="30.0" prefWidth="186.0" spacing="20.0">
+         <children>
+            <Button id="btAceptar" mnemonicParsing="false" onAction="#borrar" text="Borrar" />
+            <Button id="btCancelar" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="407.0" spacing="20.0" styleClass="fondo" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.alquilervehiculos.vista.graficos.controladores.LeerVehiculo">
+   <children>
+      <Label styleClass="etiquetaVentana" text="INSERTAR VEHICULO" />
+      <GridPane hgap="10.0" prefHeight="226.0" prefWidth="367.0" vgap="15.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="295.20001220703125" minWidth="10.0" prefWidth="81.99996337890624" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="449.60003662109375" minWidth="10.0" prefWidth="274.80003662109374" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label styleClass="etiqueta" text="Marca:" />
+            <Label styleClass="etiqueta" text="Modelo:" GridPane.rowIndex="1" />
+            <Label styleClass="etiqueta" text="Matrícula:" GridPane.rowIndex="2" />
+            <Label styleClass="etiqueta" text="Tipo:" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="cbTipo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="tfMarca" maxWidth="300.0" styleClass="cajaTexto" GridPane.columnIndex="1" />
+            <TextField fx:id="tfModelo" maxWidth="300.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfMatricula" maxWidth="150.0" prefHeight="26.0" prefWidth="200.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="97.0" styleClass="etiqueta" text="Cilindrada:" GridPane.rowIndex="4" />
+            <TextField fx:id="tfCilindrada" maxWidth="100.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label styleClass="etiqueta" text="P.M.A:" GridPane.rowIndex="5" />
+            <TextField fx:id="tfPma" maxWidth="100.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label styleClass="etiqueta" text="Plazas:" GridPane.rowIndex="6" />
+            <TextField fx:id="tfPlazas" maxWidth="100.0" prefHeight="25.0" prefWidth="197.0" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" prefHeight="30.0" prefWidth="418.0" spacing="20.0">
+         <children>
+            <Button id="btAceptar" mnemonicParsing="false" onAction="#insertarAlquiler" text="Insertar vehículo" />
+            <Button id="btCancelar" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

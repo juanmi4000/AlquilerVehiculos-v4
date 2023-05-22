@@ -1,0 +1,112 @@
+* {
+	gradient: white vertical;
+	transparency: 0;
+	lineWidth: 1px;
+	shadow: true;
+	shadowWidth: 3px;
+	shadowColor: darkgray;
+	radiusWidth: 6px;
+	radiusHeight: 6px;
+}
+
+* > Compartment[kind="attributes"],
+* > Compartment[kind="operations"] {
+    visible: true;
+}
+
+* > Compartment[kind="nestedclassifiers"] {
+    visible:false;
+}
+
+Class,
+Enumeration,
+Interface,
+Package {
+	bold: true;
+}
+
+/*Class Property,
+Class Operation, */
+Class {
+	fillColor: #DEEDFA;
+	lineColor: #044085;
+	fontColor: #044085;
+}
+
+* [isStatic=true] {
+	fontColor: #044085;
+}
+
+
+Label[type=StereotypeLabel] {
+	visible: false;
+}
+
+Enumeration {
+	fillColor: #F3D8FA;
+	lineColor: #491057;
+	fontColor: #491057;
+}
+
+Interface {
+	fillColor: #E2F7D2;
+	lineColor: #236122;
+	fontColor: #236122;
+}
+
+* [isAbstract=true] {
+	fillColor: #FFEBF1;
+	lineColor: #DB1A54;
+	fontColor: #DB1A54;
+}
+
+Package {
+	fillColor: #FBFCD7;
+	lineColor: #66521D;
+	fontColor: #66521D;
+}
+
+Property {
+	maskLabel: visibility derived name type;
+}
+
+Property[aggregation=composite] {
+	visible: false;
+	/*maskLabel: visibility name type multiplicity;*/
+}
+
+Association > Label:sourceMultiplicity {
+	visible: false;
+}
+ 
+Association > Label:targetMultiplicity {
+	visible: true;
+}
+
+/*Label[kind=SourceRole],*/
+Label[kind=TargetRole],
+Association > Label:name,
+InterfaceRealization > Label:name {
+    visible: false;
+}
+
+Class Operation Parameter {
+	visible: false;
+	fontColor: #FFFFFF;
+	maskLabel: type name;
+}
+
+Operations[Label]{
+	fontColor: #66521D;
+	fontHeight: 12;
+}
+
+Operation > Label:direction {
+	visible: false;
+}
+
+Operation > Label {
+	maskLabel: name type;
+}
+
+
