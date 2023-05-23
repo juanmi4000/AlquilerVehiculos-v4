@@ -139,15 +139,3 @@ public class Clientes implements IClientes {
 	}
 
 }
-
-
-/* Los vehiculos 
- * 
- * hacer un string para todos los atributos de un vehicullo
- * getVehiuclo el if lo hago con el tipo
- * 
- * 
- * 
- * 
- * 
-*/

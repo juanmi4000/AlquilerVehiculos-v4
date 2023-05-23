@@ -31,6 +31,7 @@ public class Clientes implements IClientes {
 	private static final Clientes instancia = new Clientes();
 	
 	private Clientes() {
+		// lo pongo privado para que no se puedan hacer instancias
 	}
 	
 	static Clientes getInstancia() {

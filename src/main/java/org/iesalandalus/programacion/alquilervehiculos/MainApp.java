@@ -12,7 +12,7 @@ import org.iesalandalus.programacion.alquilervehiculos.vista.Vista;
 public class MainApp {
 
 	public static void main(String[] args) throws OperationNotSupportedException {
-		Modelo modelo = new ModeloCascada(FactoriaFuenteDatos.FICHEROS);
+		Modelo modelo = new ModeloCascada(procesarArgumentosModelo(args));
 		Vista vista = procesarArgumentosVista(args);
 
 		Controlador controlador = new Controlador(modelo, vista);
@@ -22,16 +22,29 @@ public class MainApp {
 	}
 	
 	private static Vista procesarArgumentosVista(String[] args) {
-		
 		Vista vista = FactoriaVista.GRAFICOS.crear();
 		for (String argumentos : args) {
-			if (argumentos.equals("-vgraficos")) {
+			if (argumentos.equalsIgnoreCase("-vgraficos")) {
 				vista = FactoriaVista.GRAFICOS.crear();
-			} else {
+			} else if (argumentos.equalsIgnoreCase("-vtexto")) {
 				vista = FactoriaVista.TEXTO.crear();
 			}
 		}
 		
 		return vista;
+	}
+	
+	private static FactoriaFuenteDatos procesarArgumentosModelo(String[] args) {
+		FactoriaFuenteDatos factoriaFuenteDatos = FactoriaFuenteDatos.MARIADB;
+		for (String argumentos : args) {
+			if (argumentos.equalsIgnoreCase("-fdficheros")) {
+				factoriaFuenteDatos = FactoriaFuenteDatos.FICHEROS;
+			} else if (argumentos.equalsIgnoreCase("-fdmariadb")) {
+				factoriaFuenteDatos = FactoriaFuenteDatos.MARIADB;
+			} else if (argumentos.equalsIgnoreCase("-fdmongodb")) {
+				factoriaFuenteDatos = FactoriaFuenteDatos.MONGODB;
+			}
+		}
+		return factoriaFuenteDatos;
 	}
 }
