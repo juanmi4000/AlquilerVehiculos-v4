@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class MariaDB {
 	
-	private static final String HOST = "localhost";
+	private static final String HOST = "localhost:3310";
 	private static final String ESQUEMA = "alquilerVehiculos";
 	private static final String USUARIO = "vehiculos";
 	private static final String CONTRASENA = "vehiculos";

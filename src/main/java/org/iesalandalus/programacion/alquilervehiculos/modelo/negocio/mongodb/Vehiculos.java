@@ -21,11 +21,12 @@ import com.mongodb.client.result.DeleteResult;
 
 public class Vehiculos implements IVehiculos {
 
-	private static final String AUTOBUS = "autobus";
+	private static final String TURISMO = "Turismo";
+	private static final String AUTOBUS = "Autobus";
 	private static final String PLAZAS = "plazas";
 	private static final String PMA = "pma";
 	private static final String CILINDRADA = "cilindrada";
-	private static final String FURGONETA = "furgoneta";
+	private static final String FURGONETA = "Furgoneta";
 	private static final String TIPO = "tipo";
 	private static final String MODELO = "modelo";
 	private static final String MARCA = "marca";
@@ -62,7 +63,7 @@ public class Vehiculos implements IVehiculos {
 			String modelo = documento.getString(MODELO);
 			String matricula = documento.getString(MATRICULA);
 			String tipo = documento.getString(TIPO);
-			if (tipo.equalsIgnoreCase(FURGONETA)) {
+			if (tipo.equalsIgnoreCase(TURISMO)) {
 				int cilindrada = documento.getInteger(CILINDRADA);
 				vehiculo = new Turismo(marca, modelo, cilindrada, matricula);
 			} else if (tipo.equalsIgnoreCase(FURGONETA)) {
@@ -85,14 +86,14 @@ public class Vehiculos implements IVehiculos {
 			String matricula = vehiculo.getMatricula();
 			if (vehiculo instanceof Turismo turismo) {
 				int cilindrada = turismo.getCilindrada();
-				documento = new Document().append(MARCA, marca).append(MODELO, modelo).append(CILINDRADA, cilindrada).append(MATRICULA, matricula);
+				documento = new Document().append(MARCA, marca).append(MODELO, modelo).append(CILINDRADA, cilindrada).append(MATRICULA, matricula).append(TIPO, TURISMO);
 			}else if (vehiculo instanceof Furgoneta furgoneta) {
 				int plazas = furgoneta.getPlazas();
 				int pma = furgoneta.getPma();
-				documento = new Document().append(MARCA, marca).append(MODELO, modelo).append(PMA, pma).append(PLAZAS, plazas).append(MATRICULA, matricula);
+				documento = new Document().append(MARCA, marca).append(MODELO, modelo).append(PMA, pma).append(PLAZAS, plazas).append(MATRICULA, matricula).append(TIPO, FURGONETA);
 			} else if (vehiculo instanceof Autobus autobus) {
 				int plazas = autobus.getPlazas();
-				documento = new Document().append(MARCA, marca).append(MODELO, modelo).append(PLAZAS, plazas).append(MATRICULA, matricula);
+				documento = new Document().append(MARCA, marca).append(MODELO, modelo).append(PLAZAS, plazas).append(MATRICULA, matricula).append(TIPO,	AUTOBUS);
 			}
 		}
 		return documento;

@@ -12,6 +12,6 @@ services:
       - volumen-mariadb:/var/lib/mysql
       - .:/docker-entrypoint-initdb.d
     ports:
-      - 8800:8800
+      - 3310:3306
 volumes:
   volumen-mariadb:
