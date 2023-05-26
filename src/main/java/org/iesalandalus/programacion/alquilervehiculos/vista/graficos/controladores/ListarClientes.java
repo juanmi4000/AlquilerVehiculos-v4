@@ -21,58 +21,55 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ListarClientes extends Controlador {
-
+public class ListarClientes extends Controlador{
+	
 	private static final String BORRAR_CLIENTE = "BORRAR CLIENTE";
 	private static final String ERROR = "ERROR";
 	private static final String MODIFICAR_CLIENTE = "Modificar cliente";
 
-	@FXML
-	private Button btBorrarCliente;
+    @FXML
+    private Button btBorrarCliente;
 
-	@FXML
-	private Button btBuscarCliente;
+    @FXML
+    private Button btBuscarCliente;
 
-	@FXML
-	private Button btListar;
+    @FXML
+    private Button btListar;
 
-	@FXML
-	private TextField tfCambiarDni;
+    @FXML
+    private TableColumn<Cliente, String> tcDni;
 
-	@FXML
-	private TextField tfCambiarNombre;
+    @FXML
+    private TableColumn<Cliente, String> tcNombre;
 
-	@FXML
-	private TextField tfCambiarTelefono;
+    @FXML
+    private TableColumn<Cliente, String> tcTelefono;
 
-	@FXML
-	private TextField tfListarAlquileresCliente;
+    @FXML
+    private TextField tfCambiarDni;
 
-	@FXML
-	private TextField tfDniEncontrado;
+    @FXML
+    private TextField tfCambiarNombre;
 
-	@FXML
-	private TextField tfNombreEncontrado;
+    @FXML
+    private TextField tfCambiarTelefono;
 
-	@FXML
-	private TextField tfTelefonoEncontrado;
+    @FXML
+    private TextField tfDni;
 
-	@FXML
-	private TableColumn<Cliente, String> tcDni;
+    @FXML
+    private TextField tfDniEncontrado;
 
-	@FXML
-	private TableColumn<Cliente, String> tcNombre;
+    @FXML
+    private TextField tfNombreEncontrado;
 
-	@FXML
-	private TableColumn<Cliente, String> tcTelefono;
+    @FXML
+    private TextField tfTelefonoEncontrado;
 
-	@FXML
-	private TextField tfDni;
+    @FXML
+    private TableView<Cliente> tvListaClientes;
 
-	@FXML
-	private TableView<Cliente> tvListaClientes;
-
-	@FXML
+    @FXML
 	void initialize() {
 		deshabilitar();
 		tcNombre.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getNombre()));
@@ -88,9 +85,9 @@ public class ListarClientes extends Controlador {
 		acercaDe.getEscenario().showAndWait();
 	}
 
-	@FXML
-	void borrarCliente(ActionEvent event) {
-		if (Dialogos.mostrarDialogoConfirmacion(BORRAR_CLIENTE, "¿Estás seguro que desea eliminar el cliente?",
+    @FXML
+    void borrarCliente(ActionEvent event) {
+    	if (Dialogos.mostrarDialogoConfirmacion(BORRAR_CLIENTE, "¿Estás seguro que desea eliminar el cliente?",
 				getEscenario())) {
 			try {
 				Cliente cliente = getCliente();
@@ -105,11 +102,30 @@ public class ListarClientes extends Controlador {
 			event.consume();
 		}
 		limpiar(true);
-	}
+    }
 
-	@FXML
-	void buscarCliente(ActionEvent event) {
-		try {
+    @FXML
+    void borrarClienteTabla(ActionEvent event) {
+    	if (Dialogos.mostrarDialogoConfirmacion(BORRAR_CLIENTE, "¿Estás seguro que desea eliminar el cliente?",
+				getEscenario())) {
+			Cliente cliente = tvListaClientes.getSelectionModel().getSelectedItem();
+			try {
+				VistaGraficos.getInstancia().getControlador().borrar(cliente);
+				Dialogos.mostrarDialogoAdvertencia(BORRAR_CLIENTE, "El cliente ha sido borrado correctamente.",
+						getEscenario());
+				tvListaClientes.getItems().remove(tvListaClientes.getSelectionModel().getSelectedIndex());
+			} catch (Exception e) {
+				Dialogos.mostrarDialogoError(ERROR, e.getMessage(), getEscenario());
+			}
+		} else {
+			event.consume();
+		}
+		limpiar(true);
+    }
+
+    @FXML
+    void buscarCliente(ActionEvent event) {
+    	try {
 			Cliente cliente = getCliente();
 			tfNombreEncontrado.setText(cliente.getNombre());
 			tfDniEncontrado.setText(cliente.getDni());
@@ -118,30 +134,36 @@ public class ListarClientes extends Controlador {
 			Dialogos.mostrarDialogoError(ERROR, e.getMessage(), getEscenario());
 		}
 		limpiar(true);
-	}
+    }
 
-	@FXML
-	void comprobarDni(ActionEvent event) {
-		if (!tfDni.getText().isBlank()) {
+    @FXML
+    void comprobarDni(ActionEvent event) {
+    	String dni = tfDni.getText();
+    	if (!dni.isBlank()) {
 			btBorrarCliente.setDisable(false);
 			btBuscarCliente.setDisable(false);
-		} else {
-			Dialogos.mostrarDialogoError(ERROR, "El dni no puede estar vacio.", getEscenario());
 		}
-	}
+    }
 
-	@FXML
-	void comprobarDniLC(ActionEvent event) {
-		if (!tfListarAlquileresCliente.getText().isBlank()) {
-			btListar.setDisable(false);
-		} else {
-			Dialogos.mostrarDialogoError(ERROR, "El dni no puede estar vacio.", getEscenario());
-		}
-	}
+    @FXML
+    void estadisticasAnuales(ActionEvent event) {
+    	EstadisticasAnuales estadisticasAnuales = (EstadisticasAnuales) Controladores
+				.get("vistas/EstadisticasAnuales.fxml", "ESTADISTICAS ANUALES", getEscenario());
+		estadisticasAnuales.limpiar();
+		estadisticasAnuales.getEscenario().showAndWait();
+    }
 
-	@FXML
-	void gitHub(ActionEvent event) {
-		String link = "https://github.com/juanmi4000/AlquilerVehiculos-v3.git";
+    @FXML
+    void estadisticasMensuales(ActionEvent event) {
+    	EstadisticasMensuales estadisticasMensuales = (EstadisticasMensuales) Controladores
+				.get("vistas/EstadisticasMensuales.fxml", "ESTADISTICAS MENSUALES", getEscenario());
+		estadisticasMensuales.limpiar();
+		estadisticasMensuales.getEscenario().showAndWait();
+    }
+
+    @FXML
+    void gitHub(ActionEvent event) {
+    	String link = "https://github.com/juanmi4000/AlquilerVehiculos-v4.git";
 		try {
 			Desktop deskpot = Desktop.getDesktop();
 			deskpot.browse(java.net.URI.create(link));
@@ -149,11 +171,30 @@ public class ListarClientes extends Controlador {
 			Dialogos.mostrarDialogoError(ERROR, "Ha ocurrido un error inesperado al abrir la página.", getEscenario());
 			e.printStackTrace();
 		}
-	}
+    }
 
-	@FXML
-	void listarAlquileres(ActionEvent event) {
+    @FXML
+    void leerCliente(ActionEvent event) {
+    	LeerCliente controladorLeerCliente = (LeerCliente) Controladores.get("vistas/LeerCliente.fxml", "Leer cliente",
+				getEscenario());
+		controladorLeerCliente.limpiar();
+		controladorLeerCliente.getEscenario().showAndWait();
 		try {
+			Cliente cliente = controladorLeerCliente.getCliente();
+			if (cliente != null) {
+				VistaGraficos.getInstancia().getControlador().insertar(cliente);
+				Dialogos.mostrarDialogoAdvertencia("Insertar cliente", "El cliente se ha insertado correctamente",
+						getEscenario());
+				tvListaClientes.getItems().add(cliente);
+			}
+		} catch (Exception e) {
+			Dialogos.mostrarDialogoError(ERROR, e.getMessage(), getEscenario());
+		}
+    }
+
+    @FXML
+    void listarAlquileres(ActionEvent event) {
+    	try {
 			ListarAlquileres listarAlquileres = (ListarAlquileres) Controladores.get("vistas/ListarAlquileres.fxml",
 					"LISTAR ALQUILERES", getEscenario());
 			listarAlquileres.actualizar(VistaGraficos.getInstancia().getControlador().getAlquileres());
@@ -161,27 +202,19 @@ public class ListarClientes extends Controlador {
 		} catch (Exception e) {
 			Dialogos.mostrarDialogoError(ERROR, "La ventana ya está abierta.", getEscenario());
 		}
-	}
+    }
 
-	@FXML
-	void listarAlquileresCliente(ActionEvent event) {
-		ListarAlquileresClienVehi listarAlquileresCliente = (ListarAlquileresClienVehi) Controladores
+    @FXML
+    void listarAlquileresCliente(ActionEvent event) {
+    	ListarAlquileresClienVehi listarAlquileresCliente = (ListarAlquileresClienVehi) Controladores
 				.get("vistas/ListarAlquileresClienVehi.fxml", "ALQUILERES DEL CLIENTE", getEscenario());
-		try {
-			Cliente cliente = VistaGraficos.getInstancia().getControlador()
-					.buscar(Cliente.getClienteConDni(tfListarAlquileresCliente.getText()));
-			listarAlquileresCliente.actualizar(VistaGraficos.getInstancia().getControlador().getAlquileres(cliente));
-			listarAlquileresCliente.getEscenario().showAndWait();
-			limpiar(false);
-		} catch (Exception e) {
-			Dialogos.mostrarDialogoError(ERROR, e.getMessage(), getEscenario());
-		}
+		listarAlquileresCliente.limpiar();
+		listarAlquileresCliente.getEscenario().showAndWait();
+    }
 
-	}
-
-	@FXML
-	void listarVehiculos(ActionEvent event) {
-		try {
+    @FXML
+    void listarVehiculos(ActionEvent event) {
+    	try {
 			ListarVehiculos listarVehiculos = (ListarVehiculos) Controladores.get("vistas/ListarVehiculos.fxml",
 					"LISTAR VEHICULOS", getEscenario());
 			listarVehiculos.actualizar(VistaGraficos.getInstancia().getControlador().getVehiculos());
@@ -189,12 +222,11 @@ public class ListarClientes extends Controlador {
 		} catch (Exception e) {
 			Dialogos.mostrarDialogoError(ERROR, "La ventana ya está abierta.", getEscenario());
 		}
+    }
 
-	}
-
-	@FXML
-	void modificarCliente(ActionEvent event) {
-		ModificarCliente modificarCliente = (ModificarCliente) Controladores.get("vistas/ModificarCliente.fxml",
+    @FXML
+    void modificarCliente(ActionEvent event) {
+    	ModificarCliente modificarCliente = (ModificarCliente) Controladores.get("vistas/ModificarCliente.fxml",
 				MODIFICAR_CLIENTE, getEscenario());
 		modificarCliente.limpiar();
 		modificarCliente.getEscenario().showAndWait();
@@ -221,72 +253,18 @@ public class ListarClientes extends Controlador {
 		} catch (Exception e) {
 			Dialogos.mostrarDialogoError(MODIFICAR_CLIENTE, e.getMessage(), getEscenario());
 		}
-	}
+    }
 
-	@FXML
-	void estadisticasAnuales(ActionEvent event) {
-		EstadisticasAnuales estadisticasAnuales = (EstadisticasAnuales) Controladores
-				.get("vistas/EstadisticasAnuales.fxml", "ESTADISTICAS ANUALES", getEscenario());
-		estadisticasAnuales.limpiar();
-		estadisticasAnuales.getEscenario().showAndWait();
-	}
-
-	@FXML
-	void estadisticasMensuales(ActionEvent event) {
-		EstadisticasMensuales estadisticasMensuales = (EstadisticasMensuales) Controladores
-				.get("vistas/EstadisticasMensuales.fxml", "ESTADISTICAS MENSUALES", getEscenario());
-		estadisticasMensuales.limpiar();
-		estadisticasMensuales.getEscenario().showAndWait();
-	}
-
-	@FXML
-	void leerCliente(ActionEvent event) {
-		LeerCliente controladorLeerCliente = (LeerCliente) Controladores.get("vistas/LeerCliente.fxml", "Leer cliente",
-				getEscenario());
-		controladorLeerCliente.limpiar();
-		controladorLeerCliente.getEscenario().showAndWait();
-		try {
-			Cliente cliente = controladorLeerCliente.getCliente();
-			if (cliente != null) {
-				VistaGraficos.getInstancia().getControlador().insertar(cliente);
-				Dialogos.mostrarDialogoAdvertencia("Insertar cliente", "El cliente se ha insertado correctamente",
-						getEscenario());
-				tvListaClientes.getItems().add(cliente);
-			}
-		} catch (Exception e) {
-			Dialogos.mostrarDialogoError(ERROR, e.getMessage(), getEscenario());
-		}
-	}
-
-	@FXML
-	void borrarClienteTabla(ActionEvent event) {
-		if (Dialogos.mostrarDialogoConfirmacion(BORRAR_CLIENTE, "¿Estás seguro que desea eliminar el cliente?",
-				getEscenario())) {
-			Cliente cliente = tvListaClientes.getSelectionModel().getSelectedItem();
-			try {
-				VistaGraficos.getInstancia().getControlador().borrar(cliente);
-				Dialogos.mostrarDialogoAdvertencia(BORRAR_CLIENTE, "El cliente ha sido borrado correctamente.",
-						getEscenario());
-				tvListaClientes.getItems().remove(tvListaClientes.getSelectionModel().getSelectedIndex());
-			} catch (Exception e) {
-				Dialogos.mostrarDialogoError(ERROR, e.getMessage(), getEscenario());
-			}
-		} else {
-			event.consume();
-		}
-		limpiar(true);
-	}
-
-	@FXML
-	void salir(ActionEvent event) {
-		if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Está seguro que desea salir?", getEscenario())) {
+    @FXML
+    void salir(ActionEvent event) {
+    	if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Está seguro que desea salir?", getEscenario())) {
 			getEscenario().close();
 		} else {
 			event.consume();
 		}
-	}
-
-	@FXML
+    }
+    
+    @FXML
 	void actualizar(List<Cliente> clientes) {
 		clientes.sort(Comparator.comparing(Cliente::getNombre).thenComparing(Cliente::getDni));
 		tvListaClientes.setItems(FXCollections.observableArrayList(clientes));
@@ -294,31 +272,27 @@ public class ListarClientes extends Controlador {
 
 	@FXML
 	void limpiar() {
-		Controles.limpiarCamposTexto(tfDni, tfListarAlquileresCliente, tfCambiarDni,tfCambiarNombre,tfCambiarTelefono);
+		Controles.limpiarCamposTexto(tfDni, tfCambiarDni,tfCambiarNombre,tfCambiarTelefono);
 	}
-
+	
 	@FXML
 	void limpiar(boolean limpiardni) {
 		if (limpiardni) {
 			tfDni.setText("");
 			btBorrarCliente.setDisable(true);
 			btBuscarCliente.setDisable(true);
-		} else {
-			tfListarAlquileresCliente.setText("");
-			btListar.setDisable(true);
 		}
 	}
-
+	
 	@FXML
 	private Cliente getCliente() {
 		return VistaGraficos.getInstancia().getControlador().buscar(Cliente.getClienteConDni(tfDni.getText()));
 	}
-
+	
 	@FXML
 	private void deshabilitar() {
 		btBorrarCliente.setDisable(true);
 		btBuscarCliente.setDisable(true);
-		btListar.setDisable(true);
 		tfNombreEncontrado.setDisable(true);
 		tfDniEncontrado.setDisable(true);
 		tfTelefonoEncontrado.setDisable(true);
@@ -334,4 +308,5 @@ public class ListarClientes extends Controlador {
 		tfCambiarDni.setText(cliente.getDni());
 		tfCambiarTelefono.setText(cliente.getTelefono());
 	}
+
 }

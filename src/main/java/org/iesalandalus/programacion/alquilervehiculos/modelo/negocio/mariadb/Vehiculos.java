@@ -1,6 +1,5 @@
 package org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.mariadb;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,38 +18,27 @@ import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Turismo;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.alquilervehiculos.modelo.negocio.IVehiculos;
 
-public class Vehiculos implements IVehiculos{
-	
+public class Vehiculos implements IVehiculos {
+
 	private static final String AUTOBUS = "autobus";
-
 	private static final String PMA = "pma";
-
 	private static final String PLAZAS = "plazas";
-
 	private static final String FURGONETA = "furgoneta";
-
 	private static final String CILINDRADA = "cilindrada";
-
 	private static final String TURISMO = "turismo";
-
 	private static final String TIPO = "tipo";
-
 	private static final String MATRICULA = "matricula";
-
 	private static final String MODELO = "modelo";
-
 	private static final String MARCA = "marca";
-
 	private static final String ERROR = "ERROR";
-	
+
 	private Connection conexion;
 	private static final Vehiculos instancia = new Vehiculos();
-	
-	
+
 	private Vehiculos() {
 		// lo pongo privado para que no se puedan hacer instancias
 	}
-	
+
 	static Vehiculos getInstancia() {
 		return instancia;
 	}
@@ -58,16 +46,16 @@ public class Vehiculos implements IVehiculos{
 	@Override
 	public void comenzar() {
 		conexion = MariaDB.getConexion();
-		
+
 	}
 
 	@Override
 	public void terminar() {
 		MariaDB.cerrarConexion();
-		
+
 	}
-	
-	private Vehiculo getVehiculo(ResultSet fila) throws SQLException{
+
+	private Vehiculo getVehiculo(ResultSet fila) throws SQLException {
 		Vehiculo vehiculo = null;
 		String marca = fila.getString(MARCA);
 		String modelo = fila.getString(MODELO);
@@ -76,7 +64,7 @@ public class Vehiculos implements IVehiculos{
 		if (tipo.equalsIgnoreCase(TURISMO)) {
 			int cilindrada = fila.getInt(CILINDRADA);
 			vehiculo = new Turismo(marca, modelo, cilindrada, matricula);
-		} else if (tipo.equalsIgnoreCase(FURGONETA)){
+		} else if (tipo.equalsIgnoreCase(FURGONETA)) {
 			int plazas = fila.getInt(PLAZAS);
 			int pma = fila.getInt(PMA);
 			vehiculo = new Furgoneta(marca, modelo, pma, plazas, matricula);
@@ -86,7 +74,7 @@ public class Vehiculos implements IVehiculos{
 		}
 		return vehiculo;
 	}
-	
+
 	private void prepararSentencia(PreparedStatement sentencia, Vehiculo vehiculo) throws SQLException {
 		sentencia.setString(1, vehiculo.getMarca());
 		sentencia.setString(2, vehiculo.getModelo());
@@ -94,9 +82,9 @@ public class Vehiculos implements IVehiculos{
 		if (vehiculo instanceof Turismo turismo) {
 			sentencia.setString(4, TURISMO);
 			sentencia.setInt(5, turismo.getCilindrada());
-			sentencia.setNull(6,Types.INTEGER);
+			sentencia.setNull(6, Types.INTEGER);
 			sentencia.setNull(7, Types.INTEGER);
-		}else if (vehiculo instanceof Furgoneta furgoneta) {
+		} else if (vehiculo instanceof Furgoneta furgoneta) {
 			sentencia.setString(4, FURGONETA);
 			sentencia.setNull(5, Types.INTEGER);
 			sentencia.setInt(6, furgoneta.getPlazas());
@@ -116,7 +104,7 @@ public class Vehiculos implements IVehiculos{
 			ResultSet filas = sentencia.executeQuery("select * from vehiculos");
 			while (filas.next()) {
 				vehiculos.add(getVehiculo(filas));
-				
+
 			}
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(ERROR + e.getMessage());
@@ -127,14 +115,15 @@ public class Vehiculos implements IVehiculos{
 	@Override
 	public void insertar(Vehiculo vehiculo) throws OperationNotSupportedException {
 		if (vehiculo == null) {
-			throw new NullPointerException("ERROR: No se puede insertar un cliente nulo.");
+			throw new NullPointerException("ERROR: No se puede insertar un vehículo nulo.");
 		}
-		try (PreparedStatement sentencia = conexion.prepareStatement("insert into vehiculos values (?, ?, ?, ?, ?, ?, ?)")){
+		try (PreparedStatement sentencia = conexion
+				.prepareStatement("insert into vehiculos values (?, ?, ?, ?, ?, ?, ?)")) {
 			prepararSentencia(sentencia, vehiculo);
 			sentencia.execute();
 		} catch (SQLIntegrityConstraintViolationException e) {
 			throw new OperationNotSupportedException("ERROR: Ya existe un vehículo con esa matrícula.");
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			throw new IllegalArgumentException(ERROR + e.getMessage());
 		}
 	}
@@ -144,7 +133,7 @@ public class Vehiculos implements IVehiculos{
 		if (vehiculo == null) {
 			throw new NullPointerException("ERROR: No se puede buscar un vehículo nulo.");
 		}
-		try (PreparedStatement sentencia = conexion.prepareStatement("select * from vehiculos where matricula = ? ")){
+		try (PreparedStatement sentencia = conexion.prepareStatement("select * from vehiculos where matricula = ? ")) {
 			sentencia.setString(1, vehiculo.getMatricula());
 			ResultSet filas = sentencia.executeQuery();
 			vehiculo = filas.first() ? getVehiculo(filas) : null;
@@ -159,7 +148,7 @@ public class Vehiculos implements IVehiculos{
 		if (vehiculo == null) {
 			throw new NullPointerException("ERROR: No se puede borrar un vehículo nulo.");
 		}
-		try (PreparedStatement sentencia = conexion.prepareStatement("delete from vehiculos where matricula = ?")){
+		try (PreparedStatement sentencia = conexion.prepareStatement("delete from vehiculos where matricula = ?")) {
 			sentencia.setString(1, vehiculo.getMatricula());
 			int filas = sentencia.executeUpdate();
 			if (filas == 0) {
@@ -168,7 +157,7 @@ public class Vehiculos implements IVehiculos{
 		} catch (SQLException e) {
 			throw new IllegalArgumentException(ERROR + e.getMessage());
 		}
-		
+
 	}
 
 }

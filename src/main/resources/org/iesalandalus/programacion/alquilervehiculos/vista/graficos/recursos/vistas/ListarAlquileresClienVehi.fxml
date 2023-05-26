@@ -2,13 +2,60 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="633.0" spacing="20.0" styleClass="fondo" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.alquilervehiculos.vista.graficos.controladores.ListarAlquileresClienVehi">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="633.0" spacing="15.0" styleClass="fondo" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.alquilervehiculos.vista.graficos.controladores.ListarAlquileresClienVehi">
    <children>
+      <MenuBar styleClass="menuPrincipal">
+         <menus>
+            <Menu mnemonicParsing="false" text="Fichero">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#generarPdf" text="Guardar PDF" />
+                  <MenuItem mnemonicParsing="false" onAction="#salir" text="Salir" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Estadísticas">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#estadisticasMensuales" text="Mensuales" />
+                  <MenuItem mnemonicParsing="false" onAction="#estadisticasAnuales" text="Anuales" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#acercaDe" text="Acerca de" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <ChoiceBox fx:id="cbClienteVehiculo" prefHeight="26.0" prefWidth="201.0" />
+      <HBox alignment="CENTER" spacing="30.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label styleClass="etiqueta" text="Cliente:" />
+                  <TextField fx:id="tfDni" styleClass="cajaTexto" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label styleClass="etiqueta" text="Matrícula:" />
+                  <TextField fx:id="tfMatricula" styleClass="cajaTexto" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <Button fx:id="btListar" mnemonicParsing="false" onAction="#listar" styleClass="botones" text="Listar alquiler" />
+      <Separator prefWidth="200.0" styleClass="separador" />
       <TableView fx:id="tvListarAlquileresCliente" prefHeight="400.0" prefWidth="584.0" styleClass="tabla">
         <columns>
           <TableColumn fx:id="tcCliente" prefWidth="130.0" text="Cliente" />
@@ -18,14 +65,13 @@
             <TableColumn fx:id="tcPrecio" prefWidth="100.80001220703127" text="Precio" />
         </columns>
       </TableView>
-      <HBox alignment="CENTER" spacing="30.0" styleClass="botones">
+      <HBox alignment="CENTER" prefHeight="97.0" prefWidth="634.0" spacing="30.0" styleClass="fondo">
          <children>
-            <Button mnemonicParsing="false" onAction="#generarPdf" text="Generar pdf" />
-            <Button mnemonicParsing="false" onAction="#salir" styleClass="botones" text="Salir" />
+            <Button id="btCancelar" mnemonicParsing="false" onAction="#salir" text="Salir" />
          </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
       </HBox>
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
 </VBox>

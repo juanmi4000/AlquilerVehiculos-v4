@@ -92,9 +92,6 @@ public class ListarVehiculos extends Controlador {
 	private TextField tfCilindradaEncontrada;
 
 	@FXML
-	private TextField tfListarAlquileresV;
-
-	@FXML
 	private TextField tfMarcaEncontrada;
 
 	@FXML
@@ -189,17 +186,6 @@ public class ListarVehiculos extends Controlador {
 	}
 
 	@FXML
-	void comprobarAlquileresVehiculoCo(ActionEvent event) {
-		if (tfListarAlquileresV.getText().equals("")) {
-			Dialogos.mostrarDialogoError(ERROR,
-					"Para listar los alquileres, el campo de la matricula no puede estar vacia.", getEscenario());
-			btListVehi.setDisable(true);
-		} else {
-			btListVehi.setDisable(false);
-		}
-	}
-
-	@FXML
 	void estadisticasAnuales(ActionEvent event) {
 		EstadisticasAnuales estadisticasAnuales = (EstadisticasAnuales) Controladores
 				.get("vistas/EstadisticasAnuales.fxml", "ESTADISTICAS ANUALES", getEscenario());
@@ -217,7 +203,7 @@ public class ListarVehiculos extends Controlador {
 
 	@FXML
 	void gitHub(ActionEvent event) {
-		String link = "https://github.com/juanmi4000/AlquilerVehiculos-v3.git";
+		String link = "https://github.com/juanmi4000/AlquilerVehiculos-v4.git";
 		try {
 			Desktop deskpot = Desktop.getDesktop();
 			deskpot.browse(java.net.URI.create(link));
@@ -263,14 +249,7 @@ public class ListarVehiculos extends Controlador {
 	void listarAlquileresVehiculo(ActionEvent event) {
 		ListarAlquileresClienVehi listarAlquileresVehiculo = (ListarAlquileresClienVehi) Controladores
 				.get("vistas/ListarAlquileresClienVehi.fxml", "ALQUILERES VEHICULO", getEscenario());
-		try {
-			Vehiculo vehiculo = VistaGraficos.getInstancia().getControlador()
-					.buscar(Vehiculo.getVehiculoConMatricula(tfListarAlquileresV.getText()));
-			listarAlquileresVehiculo.actualizar(VistaGraficos.getInstancia().getControlador().getAlquileres(vehiculo));
 			listarAlquileresVehiculo.getEscenario().showAndWait();
-		} catch (Exception e) {
-			Dialogos.mostrarDialogoError(ERROR, e.getMessage(), getEscenario());
-		}
 	}
 
 	@FXML
@@ -321,7 +300,6 @@ public class ListarVehiculos extends Controlador {
 				tfMatriculaEncontrada, tfCilindradaEncontrada, tfPlazasEncontradas, tfPmaEncontrada);
 		btBorrar.setDisable(true);
 		btBuscar.setDisable(true);
-		btListVehi.setDisable(true);
 	}
 
 	@FXML

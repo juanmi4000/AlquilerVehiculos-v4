@@ -70,7 +70,7 @@ public class Vehiculos implements IVehiculos {
 				int plazas = documento.getInteger(PLAZAS);
 				int pma = documento.getInteger(PMA);
 				vehiculo = new Furgoneta(marca, modelo, pma, plazas, matricula);
-			} else if (tipo.equalsIgnoreCase(AUTOBUS)) {
+			} else {
 				int pma = documento.getInteger(PMA);
 				vehiculo = new Autobus(marca, modelo, pma, matricula);
 			} 

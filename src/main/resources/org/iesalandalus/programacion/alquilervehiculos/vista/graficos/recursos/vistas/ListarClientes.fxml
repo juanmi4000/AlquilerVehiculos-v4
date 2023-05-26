@@ -140,7 +140,7 @@
                         <Label styleClass="etiqueta" text="Teléfono:" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <VBox alignment="CENTER" prefHeight="295.0" prefWidth="197.0" spacing="30.0">
+                  <VBox alignment="CENTER" prefHeight="248.0" prefWidth="238.0" spacing="30.0">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -149,12 +149,6 @@
                         <Button mnemonicParsing="false" onAction="#leerCliente" styleClass="botones" text="Insertar cliente" />
                         <Button mnemonicParsing="false" onAction="#modificarCliente" styleClass="botones" text="Modificar cliente" />
                         <Separator prefWidth="200.0" />
-                        <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="176.0" spacing="5.0">
-                           <children>
-                              <Label styleClass="etiqueta" text="DNI:" />
-                              <TextField fx:id="tfListarAlquileresCliente" maxWidth="100.0" onAction="#comprobarDniLC" promptText="11111111H" styleClass="cajaTexto" />
-                           </children>
-                        </HBox>
                         <Button fx:id="btListar" mnemonicParsing="false" onAction="#listarAlquileresCliente" prefHeight="26.0" prefWidth="157.0" styleClass="botones" text="Listar alquileres cliente" />
                      </children>
                      <padding>

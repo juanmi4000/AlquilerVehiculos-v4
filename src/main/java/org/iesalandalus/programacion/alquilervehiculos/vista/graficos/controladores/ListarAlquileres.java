@@ -267,7 +267,7 @@ public class ListarAlquileres extends Controlador {
 
 	@FXML
 	void gitHub(ActionEvent event) {
-		String link = "https://github.com/juanmi4000/AlquilerVehiculos-v3.git";
+		String link = "https://github.com/juanmi4000/AlquilerVehiculos-v4.git";
 		try {
 			Desktop deskpot = Desktop.getDesktop();
 			deskpot.browse(java.net.URI.create(link));

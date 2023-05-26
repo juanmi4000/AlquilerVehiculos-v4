@@ -170,15 +170,6 @@
                   <Separator prefWidth="200.0" styleClass="separador" />
                   <Button mnemonicParsing="false" onAction="#insertarVehiculo" styleClass="botones" text="Insertar vehículo" />
                   <Separator prefWidth="200.0" styleClass="separador" />
-                  <HBox alignment="CENTER_LEFT" spacing="25.0">
-                     <children>
-                        <Label styleClass="etiqueta" text="Matrícula:" />
-                        <TextField fx:id="tfListarAlquileresV" maxWidth="100.0" onAction="#comprobarAlquileresVehiculoCo" styleClass="cajaTexto" />
-                     </children>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </HBox>
                   <Button fx:id="btListVehi" mnemonicParsing="false" onAction="#listarAlquileresVehiculo" styleClass="botones" text="Listar alquileres vehículo" />
                </children>
                <padding>
