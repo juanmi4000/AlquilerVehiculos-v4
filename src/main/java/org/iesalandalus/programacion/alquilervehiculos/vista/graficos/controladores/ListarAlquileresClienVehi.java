@@ -41,11 +41,11 @@ public class ListarAlquileresClienVehi extends Controlador{
 
 	private static final String CLIENTE = "Cliente";
 
-	private static final String VEHÍCULO = "Vehículo";
+	private static final String VEHICULO = "Vehículo";
 
 	private static final String FECHA_ALQUILER = "Fecha Alquiler";
 
-	private static final String FECHA_DEVOLUCIÓN = "Fecha Devolución";
+	private static final String FECHA_DEVOLUCION = "Fecha Devolución";
 
 	private static final String PRECIO = "Precio";
 	
@@ -167,9 +167,9 @@ public class ListarAlquileresClienVehi extends Controlador{
 				PdfPTable tabla = new PdfPTable(5);
 				// De esta manera se crea una celda
 				tabla.addCell(CLIENTE);
-				tabla.addCell(VEHÍCULO);
+				tabla.addCell(VEHICULO);
 				tabla.addCell(FECHA_ALQUILER);
-				tabla.addCell(FECHA_DEVOLUCIÓN);
+				tabla.addCell(FECHA_DEVOLUCION);
 				tabla.addCell(PRECIO);
 				
 				String dni = tfDni.getText();

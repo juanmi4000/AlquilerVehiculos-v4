@@ -35,7 +35,7 @@ public class MainApp {
 	}
 	
 	private static FactoriaFuenteDatos procesarArgumentosModelo(String[] args) {
-		FactoriaFuenteDatos factoriaFuenteDatos = FactoriaFuenteDatos.MARIADB;
+		FactoriaFuenteDatos factoriaFuenteDatos = FactoriaFuenteDatos.MONGODB;
 		for (String argumentos : args) {
 			if (argumentos.equalsIgnoreCase("-fdficheros")) {
 				factoriaFuenteDatos = FactoriaFuenteDatos.FICHEROS;

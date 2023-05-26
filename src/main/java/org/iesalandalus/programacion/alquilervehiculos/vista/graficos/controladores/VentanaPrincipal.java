@@ -193,7 +193,7 @@ public class VentanaPrincipal extends Controlador {
 				if (Dialogos.mostrarDialogoConfirmacion("BORRAR VEHÍCULO",
 						"¿Estás seguro que desea eliminar el vehículo?", getEscenario())) {
 					VistaGraficos.getInstancia().getControlador().borrar(vehiculo);
-					Dialogos.mostrarDialogoAdvertencia("BORRAR VEHÍCULO", "El vehículo ha sido borrado correctamente.",
+					Dialogos.mostrarDialogoAdvertencia("BORRAR VEHICULO", "El vehículo ha sido borrado correctamente.",
 							getEscenario());
 				} else {
 					event.consume();
