@@ -68,7 +68,7 @@ public class Vehiculos implements IVehiculos {
 			if (vehiculo.getNodeType() == Node.ELEMENT_NODE) {
 				try {
 					insertar(getVehiculo(((Element) vehiculo)));
-				} catch (Exception e) {
+				} catch (NullPointerException | IllegalArgumentException | OperationNotSupportedException e) {
 					System.out.println(e.getMessage());
 					System.out.printf("ERROR: El error esta en el vehiculo que ocupa la posición: %s%n", i);
 				}
@@ -81,14 +81,15 @@ public class Vehiculos implements IVehiculos {
 		String marca = elemento.getAttribute(MARCA);
 		String modelo = elemento.getAttribute(MODELO);
 		String matricula = elemento.getAttribute(MATRICULA);
-		if (elemento.getAttribute(TIPO).equals(TURISMO)) {
+		String tipo = elemento.getAttribute(TIPO);
+		if (tipo.equals(TURISMO)) {
 			int cilindrada = Integer.parseInt(elemento.getAttribute(CILINDRADA));
 			vehiculo = new Turismo(marca, modelo, cilindrada, matricula);
-		} else if (elemento.getAttribute(TIPO).equals(FURGONETA)) {
+		} else if (tipo.equals(FURGONETA)) {
 			int pma = Integer.parseInt(elemento.getAttribute(PMA));
 			int plazas = Integer.parseInt(elemento.getAttribute(PLAZAS));
 			vehiculo = new Furgoneta(marca, modelo, pma, plazas, matricula);
-		} else if (elemento.getAttribute(TIPO).equals(AUTOBUS)) {
+		} else if (tipo.equals(AUTOBUS)) {
 			int plazas = Integer.parseInt(elemento.getAttribute(PLAZAS));
 			vehiculo = new Autobus(marca, modelo, plazas, matricula);
 		}

@@ -58,7 +58,7 @@ public class Clientes implements IClientes {
 			if (cliente.getNodeType() == Node.ELEMENT_NODE) {
 				try {
 					insertar(getCliente((Element) cliente));
-				} catch (Exception e) {
+				} catch (NullPointerException | IllegalArgumentException | OperationNotSupportedException e) {
 					System.out.println(e.getMessage());
 					System.out.printf("ERROR: El error esta en el cliente que ocupa la posición: %s%n", i);
 				}
